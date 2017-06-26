@@ -1,36 +1,27 @@
-# gpsi
+# GPSI
 
 ---
 
 ### Description
 
-GitHub Projects Slack Integration - pronounced "jip-see" - hooks into your
-GitHub Projects board(s) and sends alerts to the Slack channel(s) of your
+GitHub Projects Slack Integration (GPSI) - pronounced "jip-see" - hooks into
+your GitHub Projects board(s) and sends alerts to the Slack channel(s) of your
 choice as your team moves issues cards across the kanban board.
 
-Workflow:
-- listens for GitHub Projects events (see go-github API)
-- passes message into established Slack client / channel
+So far, this will be a bare-bones skeleton with most of the code outline
+available directly in the gpsi.go source file (given the project is a
+relatively simple scope).
 
-Outline:
-- usage options
-  - fork repository, clone local copy, run "go build", execute binary
-  - directly download available binary (release), execute binary
-- execution options
-  - gpsi.toml configuration, looks for file in GOPATH
-  - flags, provided following binary call
-- settings
-  - GitHub
-    - card added
-    - card removed
-    - cared moved
-    - issue closed (maybe)
-  - Slack
-    - message details
-    - message summary
-    - channel options
-    - additional messages / alerts
-- errors
-  - no project on repo (removed in settings)
-  - invalid user token
-  - repo does not exist
+### Wishlist
+
+This is a summary of several features that can be built / expanded upon from
+the existing code (with as much description possible without becoming verbose).
+
+- [ ] Selection from repos available to the authenticating user
+  - [ ] e.g. Printout to the command line w/ selection options
+- [ ] Command line configuration
+  - [ ] Arguments following binary gpsi command (same as would be in TOML)
+- [ ] Message details settings
+  - [ ] Summary / details / additional alerts / etc.
+- [ ] Kanban activity options
+  - Card added / removed / moved / issue closed / etc.
