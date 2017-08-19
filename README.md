@@ -8,7 +8,7 @@ pronounced "jip-see" - hooks into your
 board(s) and sends alerts to the [Slack](https://slack.com/) channel(s) of your
 choice as your team moves issues cards across the kanban board.
 
-## Status
+### Status
 
 So far, this will be a bare-bones skeleton with most of the code outline
 available directly in the `gpsi.go` source file (given the project is a
