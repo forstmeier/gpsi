@@ -33,6 +33,7 @@ I do not currently know what the minimum scopes needed for this are.
 token = "github-token"
 owner = "repo-owner"
 repos = ["repo-name"]
+projects = ["project-name"]
 
 [slack]
 token = "slack-token"
@@ -45,6 +46,8 @@ channels = ["slack-user-channels"]
 
 This is a summary of several features that can be built / expanded upon from
 the existing code (with as much description possible without becoming verbose).
+NOTE: this is a "living list" so I'll add to stuff her periodically; I might
+also just move this all over to GitHub Issues.
 
 - [ ] Streamline token generate
   - [ ] Automate via signup authentication (vs physically generating)
