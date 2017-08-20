@@ -42,6 +42,11 @@ team = "slack-user-team"
 channels = ["slack-user-channels"]
 ```
 
+**NOTE**: This structure assumes that there is just ONE authenticating user for
+the GitHub and Slack clients - support for different authenticating user tokens
+could be something built in the future but might not ultimately make sense
+if the "streamline" authenticating gets build soon.
+
 ### Wishlist / roadmap
 
 This is a summary of several features that can be built / expanded upon from
