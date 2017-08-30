@@ -3,7 +3,7 @@
 ### Description
 
 <b>G</b>itHub <b>P</b>rojects <b>S</b>lack <b>I</b>ntegration (GPSI) -
-pronounced "jip-see" - hooks into your
+pronounced like the word "gypsy" - hooks into your
 [GitHub Projects](https://help.github.com/articles/about-project-boards/)
 board(s) and sends alerts to the [Slack](https://slack.com/) channel(s) of your
 choice as your team moves issues cards across the kanban board.
@@ -54,9 +54,12 @@ the existing code (with as much description possible without becoming verbose).
 NOTE: this is a "living list" so I'll add to stuff her periodically; I might
 also just move this all over to GitHub Issues.
 
-- [ ] Streamline token generate
+- [ ] Streamline token generation
   - [ ] Automate via signup authentication (vs physically generating)
-- [ ] Selection from repos available to the authenticating user
+  - [ ] E.g. OAuth2 on GitHub approval
+- [ ] Automate Slack integration (e.g. Slack Button)
+- [ ] Remotely host service (e.g. Heroku)
+- [ ] Dynamically select from repos available to the authenticating user
   - [ ] e.g. Printout to the command line w/ selection options
 - [ ] Command line configuration
   - [ ] Arguments following binary `gpsi` command (same as would be in TOML)
