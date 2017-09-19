@@ -61,39 +61,45 @@ func main() {
 	}
 	// NOTE: https://developer.github.com/v3/activity/events/types/#projectcardevent
 
+	repoReference := make(map[string]repoConfig)
+	orgReference := make(map[string]orgConfig)
+
 	for i := range config.Repo {
-		hook, resp, err := githubClient.Repositories.CreateHook(
-			ctx,
-			config.Repo[i].Owner,
-			config.Repo[i].Name,
-			&githubHook,
-		)
+		owner := config.Repo[i].Owner
+		name := config.Repo[i].Name
+		hook, resp, err := githubClient.Repositories.CreateHook(ctx, owner, name, &githubHook)
 		if resp == nil && err != nil {
 			fmt.Printf("ERROR - %v repo hook placement: %v, response status: %v\n", *hook.Name, err, resp.Status)
 		}
+		repoReference[fmt.Sprint(owner, "/", name)] = config.Repo[i]
 	}
 
 	for j := range config.Org {
-		hook, resp, err := githubClient.Organizations.CreateHook(
-			ctx,
-			config.Org[j].Org,
-			&githubHook,
-		)
+		org := config.Org[j].Org
+		hook, resp, err := githubClient.Organizations.CreateHook(ctx, org, &githubHook)
 		if resp == nil && err != nil {
 			fmt.Printf("ERROR - %v org hook placement: %v, response status: %v\n", *hook.Name, err, resp.Status)
 		}
+		orgReference[org] = config.Org[j]
 	}
 
-	// slackClient := slack.New(config.Repos[0].Slack.Token)
+	// slackClient := slack.New(config.sSlack)
 
-	// channels, err := slackClient.GetChannels(true)
+	/*
+	   hookHandler := func(w http.ResponseWriter, r *http.Request) {
+	       // 	// NOTE: I'm not sure this is how to reference that part of the JSON message.
+	   	if repoName := r.FormValue("repository.name"); repoName != "" {
+	           // repoOwner := r.FormValue("repository.owner.login")
+	           // stuff goes here
+	       } else if orgName := r.FormValue("organization.name"); orgName != "" {
+	           // stuff goes here
+	       }
+	   	// action := r.FormValue("action")
+	   	// url := r.FormValue("project_card.url")
 
-	// hookHandler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	// 	// NOTE: I'm not sure this is how to reference that part of the JSON message.
-	// 	repo := r.FormValue("repository.name")
-	// 	action := r.FormValue("action")
-	// 	// url := r.FormValue("project_card.url")
-	//
+	   }
+	*/
+
 	// 	// channels := reference[repo].Slack.Channels
 	//
 	// 	params := slack.PostMessageParameters{}
@@ -108,12 +114,9 @@ func main() {
 	// http.ListenAndServe(":7000", nil)
 
 	// Outline:
-	// [ ] if no command line arguments exists
 	// [X] - read from gpsi.toml file
-	// [ ] else
-	// [ ] - read from command line arguments
 	// [X] create github client
-	// [ ] create slack client
+	// [X] create slack client
 	// [X] place hooks on target repositories
 	// [X] if hook exists
 	// [X] - report it exists and move to next hook
@@ -127,4 +130,5 @@ func main() {
 	// Resources:
 	// https://github.com/google/go-github/blob/master/github/projects.go
 	// https://github.com/google/go-github/blob/master/github/repos_projects.go
+	// https://github.com/google/go-github/blob/master/github/orgs_projects.go
 }
