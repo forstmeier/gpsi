@@ -28,24 +28,10 @@ Board event notifications).
 Create a [Slack token](https://get.slack.help/hc/en-us/articles/215770388-Create-and-regenerate-API-tokens);
 I do not currently know what the minimum scopes needed for this are.
 
-```
-[github]
-token = "github-token"
-owner = "repo-owner"
-repos = ["repo-name"]
-projects = ["project-name"]
-
-[slack]
-token = "slack-token"
-user = "slack-user"
-team = "slack-user-team"
-channels = ["slack-user-channels"]
-```
-
 **NOTE**: This structure assumes that there is just ONE authenticating user for
 the GitHub and Slack clients - support for different authenticating user tokens
 could be something built in the future but might not ultimately make sense
-if the "streamline" authenticating gets build soon.
+if the "streamline" authenticating gets built soon.
 
 ### Wishlist / roadmap
 
@@ -54,15 +40,18 @@ the existing code (with as much description possible without becoming verbose).
 NOTE: this is a "living list" so I'll add to stuff her periodically; I might
 also just move this all over to GitHub Issues.
 
-- [ ] Streamline token generation
-  - [ ] Automate via signup authentication (vs physically generating)
-  - [ ] E.g. OAuth2 on GitHub approval
-- [ ] Automate Slack integration (e.g. Slack Button)
+- [ ] Streamline GitHub / Slack activation
+  - [ ] Improve token generation
+    - [ ] Automate via signup authentication (vs physically generating)
+    - [ ] E.g. OAuth2 on GitHub approval
+  - [ ] Automate Slack integration (e.g. Slack Button)
+    - [ ] Improve channel selection process
 - [ ] Remotely host service (e.g. Heroku)
 - [ ] Dynamically select from repos available to the authenticating user
   - [ ] e.g. Printout to the command line w/ selection options
-- [ ] Command line configuration
-  - [ ] Arguments following binary `gpsi` command (same as would be in TOML)
+- [ ] In-Slack configuration
+  - [ ] Communicate w/ in-channel gpsi bot
+    - [ ] Adjust setting, add channels, etc.
 - [ ] Message details settings
   - [ ] Summary / details / additional alerts / etc.
 - [ ] Kanban activity options (as a setting)
