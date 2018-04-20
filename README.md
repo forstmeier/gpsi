@@ -17,7 +17,7 @@ relatively simple scope).
 ### Configuration
 
 To set the environment variables needed to run this service for your project,
-create a `gpsi.toml` file and place it in your local `gpis/` directory. Fill
+create a `gpsi.toml` file and place it in your local `gpsi/` directory. Fill
 out the variables listed below.
 
 Create a [GitHub token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
