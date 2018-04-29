@@ -1,0 +1,16 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+  width: 100%;
+  background-image: url("../img/camel.jpg");
+  background-size: 100%;
+}
+
+h1,
+h3 {
+  font-family: Roboto, "sans serif";
+}
