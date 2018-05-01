@@ -9,7 +9,7 @@ in the know about your kanban board.
 ### Status
 
 So far, this will be a bare-bones skeleton with most of the code outline
-available directly in the `camel_spotting.go` source file (given the project is
+available directly in the `main.go` source file (given the project is
 a relatively simple scope).
 
 ### Wishlist / roadmap

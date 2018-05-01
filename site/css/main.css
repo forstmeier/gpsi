@@ -5,29 +5,33 @@
 
 body {
   width: 100%;
+
   background-image: url("../img/camel.jpg");
   background-size: 100%;
+
   text-align: center;
 }
 
 h1,
-h3,
-h6 {
+p {
   color: rgb(0,38,39);
   font-family: "Source Sans Pro", "sans serif";
 }
 
 .box {
   display: inline-block;
+
   margin-top: 50px;
 }
 
 .content {
   position: relative;
   box-sizing: border-box;
+
   height: 315px;
   width: 300px;
   padding: 20px;
+
   background-color: rgba(255,255,255,0.25);
   text-align: left;
   vertical-align: top;
@@ -35,5 +39,6 @@ h6 {
 
 .credit {
   position: absolute;
+
   bottom: 20px;
 }
