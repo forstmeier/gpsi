@@ -1,12 +1,31 @@
 package main
 
 import (
-	"net/http"
+	"encoding/json"
+	"io/ioutil"
+
+	slack "github.com/ashwanthkumar/slack-go-webhook"
 )
 
-var mainHandler = http.FileServer(http.Dir("site"))
+type config struct {
+	SlackWebhook string `json:"slack_webhook"`
+}
 
 func main() {
-	http.Handle("/", mainHandler)
-	http.ListenAndServe(":3000", nil)
+	content, err := ioutil.ReadFile("config.json")
+	if err != nil {
+		panic(err)
+	}
+
+	c := config{}
+	if err = json.Unmarshal(content, &c); err != nil {
+		panic(err)
+	}
+
+	payload := slack.Payload{
+		Text: "Posting without a token!",
+	}
+	if err := slack.Send(c.SlackWebhook, "", payload); err != nil {
+		panic(err)
+	}
 }
