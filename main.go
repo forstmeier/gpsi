@@ -21,29 +21,29 @@ type config struct {
 
 var c config
 
-func handler(r events.APIGatewayProxyRequest) error {
+func handler(r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 	if _, ok := r.Headers["X-Hub-Signature"]; !ok {
-		return errors.New("github secret not provided in request header")
+		return events.APIGatewayProxyResponse{}, errors.New("github secret not provided in request header")
 	}
 
 	if evt, _ := r.Headers["X-GitHub-Event"]; evt != "project_card" {
-		return fmt.Errorf("incorrect event type, expected project_card, received %s", evt)
+		return events.APIGatewayProxyResponse{}, fmt.Errorf("incorrect event type, expected project_card, received %s", evt)
 	}
 
 	raw := json.RawMessage(r.Body)
 	bodyBytes, err := raw.MarshalJSON()
 	if err != nil {
-		return fmt.Errorf("error creating raw message bytes, %s", err.Error())
+		return events.APIGatewayProxyResponse{}, fmt.Errorf("error creating raw message bytes, %s", err.Error())
 	}
 
 	var event github.ProjectCardEvent
 	if err := json.Unmarshal(bodyBytes, &event); err != nil {
-		return fmt.Errorf("error unmarshalling body, %s", err.Error())
+		return events.APIGatewayProxyResponse{}, fmt.Errorf("error unmarshalling body, %s", err.Error())
 	}
 
 	owner, name := *event.Repo.Owner.Login, *event.Repo.Name
 	if owner != c.GitHubRepoOwner || name != c.GitHubRepoName {
-		return fmt.Errorf("incorrect repo, wanted %s/%s, received %s/%s", c.GitHubRepoOwner, c.GitHubRepoName, owner, name)
+		return events.APIGatewayProxyResponse{}, fmt.Errorf("incorrect repo, wanted %s/%s, received %s/%s", c.GitHubRepoOwner, c.GitHubRepoName, owner, name)
 	}
 
 	title := fmt.Sprintf("%s %s a card in %s", *event.Sender.Login, *event.Action, *event.Repo.FullName)
@@ -60,10 +60,15 @@ func handler(r events.APIGatewayProxyRequest) error {
 	}
 
 	if err := slack.Send(c.SlackWebhook, "", payload); len(err) > 0 {
-		return fmt.Errorf("error sending slack message: %v", err)
+		return events.APIGatewayProxyResponse{}, fmt.Errorf("error sending slack message: %v", err)
 	}
 
-	return nil
+	return events.APIGatewayProxyResponse{
+		StatusCode: 200,
+		Headers: map[string]string{
+			"Content-Type": "application/json",
+		},
+	}, nil
 }
 
 func main() {
