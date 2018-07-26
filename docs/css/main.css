@@ -3,42 +3,46 @@
   padding: 0;
 }
 
-body {
-  width: 100%;
+a,
+a:hover,
+a:visited,
+a:link {
+  text-decoration: none;
+  color: #A53636;
+}
 
+body {
   background-image: url("../img/camel.jpg");
   background-size: 100%;
-
   text-align: center;
+  width: 100%;
 }
 
 h1,
 p {
-  color: rgb(0,38,39);
-  font-family: "Source Sans Pro", "sans serif";
+  color: #C15959;
+  font-family: "Arimo", "sans serif";
+  font-weight: 700;
 }
 
 .box {
   display: inline-block;
-
   margin-top: 50px;
 }
 
 .content {
-  position: relative;
-  box-sizing: border-box;
-
-  height: 315px;
-  width: 300px;
-  padding: 20px;
-
   background-color: rgba(255,255,255,0.25);
+  box-sizing: border-box;
+  color: white;
+  height: 315px;
+  position: relative;
+  padding: 20px;
   text-align: left;
   vertical-align: top;
+  width: 300px;
 }
 
 .credit {
-  position: absolute;
-
   bottom: 20px;
+  position: absolute;
 }
