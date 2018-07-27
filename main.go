@@ -1,10 +1,14 @@
 package main
 
 import (
+	"crypto/hmac"
+	"crypto/sha1"
+	"encoding/hex"
 	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
+	"strings"
 
 	slack "github.com/ashwanthkumar/slack-go-webhook"
 	"github.com/aws/aws-lambda-go/events"
@@ -21,9 +25,30 @@ type config struct {
 
 var c config
 
+func signBody(secret, body []byte) []byte {
+	computed := hmac.New(sha1.New, secret)
+	computed.Write(body)
+	return []byte(computed.Sum(nil))
+}
+
+func verifySignature(secret, body []byte, signature string) bool {
+	const signaturePrefix = "sha1="
+	const signatureLength = 45
+
+	if len(signature) != signatureLength || !strings.HasPrefix(signature, signaturePrefix) {
+		return false
+	}
+
+	actual := make([]byte, 20)
+	hex.Decode(actual, []byte(signature[5:]))
+
+	return hmac.Equal(signBody(secret, body), actual)
+}
+
 func handler(r events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	if _, ok := r.Headers["X-Hub-Signature"]; !ok {
-		return events.APIGatewayProxyResponse{}, errors.New("github secret not provided in request header")
+	sig := r.Headers["X-Hub-Signature"]
+	if !verifySignature([]byte(c.GitHubWebhookSecret), []byte(r.Body), sig) {
+		return events.APIGatewayProxyResponse{}, errors.New("invalid github signature provided in request")
 	}
 
 	if evt, _ := r.Headers["X-GitHub-Event"]; evt != "project_card" {
