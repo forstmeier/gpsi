@@ -1,16 +1,16 @@
 # Camel Spotting :camel: :telescope:
 
-### Description
+### Description :octocat:
 
 **Camel Spotting** is a tool that connects your [GitHub Projects](https://help.github.com/articles/about-project-boards/) updates into your team's [Slack](https://slack.com/) to keep everyone on the same page. Be in the know about your kanban board.
 
 [![Monty Python's Camel Spotting Sketch](https://img.youtube.com/vi/6RexQLrcqwc/0.jpg)](https://www.youtube.com/watch?v=6RexQLrcqwc)
 
-### Status
+### Status :traffic_light:
 
 Right now, working code is available in its entirety in the `main.go` file but it is still a work-in-progress.
 
-### Installation flow
+### Installation flow :floppy_disk:
 
 This is very much a work-in-progress I'll be focusing on making this run both locally and on AWS Lambda before going into things like the Slack button.
 
@@ -51,7 +51,7 @@ Add a file named `config.json` with the structure below to your local repository
 6. Upload the .zip file to AWS Lambda.
     - Using the console, upload your compressed file and you're ready to go!
 
-### Wishlist / roadmap
+### Wishlist / roadmap :bookmark:
 
 This is a summary of several features that can be built / expanded upon from
 the existing code (with as much description possible without becoming verbose).
