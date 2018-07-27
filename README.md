@@ -14,6 +14,17 @@ Right now, working code is available in its entirety in the `main.go` file but i
 
 This is very much a work-in-progress I'll be focusing on making this run both locally and on AWS Lambda before going into things like the Slack button.
 
+Add a file named `config.json` with the structure below to your local repository and then follow the steps below.
+
+```json
+{
+  "slack_webhook": "webhook_url_value",
+  "github_webhook_secret": "secret_value",
+  "github_repo_owner": "repo_owner_value",
+  "github_repo_name": "repo_name_value"
+}
+```
+
 1. Create app on [Slack Apps site](https://api.slack.com/slack-apps)
     - Here you'll need to enable Incoming Webhooks and copy the URL for the
   channel you'd like to send message into.
