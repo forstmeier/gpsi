@@ -2,9 +2,7 @@
 
 ### Description :octocat:
 
-**Camel Spotting** is a tool that connects your [GitHub Projects](https://help.github.com/articles/about-project-boards/) updates into your team's [Slack](https://slack.com/) to keep everyone on the same page. Be in the know about your kanban board.
-
-[![Monty Python's Camel Spotting Sketch](https://img.youtube.com/vi/6RexQLrcqwc/0.jpg)](https://www.youtube.com/watch?v=6RexQLrcqwc)
+**[Camel Spotting](https://www.youtube.com/watch?v=6RexQLrcqwc)** is a tool that connects your [GitHub Projects](https://help.github.com/articles/about-project-boards/) updates into your team's [Slack](https://slack.com/) to keep everyone on the same page. Be in the know about your kanban board.
 
 ### Status :traffic_light:
 
@@ -53,10 +51,7 @@ Add a file named `config.json` with the structure below to your local repository
 
 ### Wishlist / roadmap :bookmark:
 
-This is a summary of several features that can be built / expanded upon from
-the existing code (with as much description possible without becoming verbose).
-NOTE: this is a "living list" so I'll add to stuff her periodically; I might
-also just move this all over to GitHub Issues.
+This is a summary of several features that can be built / expanded upon from the existing code (with as much description possible without becoming verbose). NOTE: this is a "living list" so I'll add to stuff her periodically; I might also just move this all over to GitHub Issues as present them as future features.
 
 - [ ] streamline activation/installation
   - [ ] e.g. GitHub sign-in and Slack button
