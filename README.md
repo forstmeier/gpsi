@@ -8,6 +8,8 @@
 
 Right now, working code is available in its entirety in the `main.go` file but it is still a work-in-progress.
 
+**NOTE: FUNCTIONALITY FOR THIS REPO HAS BEEN MOVED TO [HEUPR](https://github.com/heupr/heupr) - THIS REPO WILL BE REMOVED SHORTLY**
+
 ### Installation flow :floppy_disk:
 
 This is very much a work-in-progress I'll be focusing on making this run both locally and on AWS Lambda before going into things like the Slack button.
